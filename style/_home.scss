@@ -1,0 +1,36 @@
+/*
+* Home Index
+*/
+
+.home-container {
+    margin: 0 5vw; 
+    max-width: 100vw;
+    .row {
+        display: block;
+        max-width: 100vw;
+        .homearticleitem {
+            display: inline-block; 
+            vertical-align: top; 
+            width: 30%;
+            margin: 0 1.5vw 1.5vw 0; 
+            height: 25vh;
+            .v-img {   
+                height: 20vh;
+                width: 25vw;
+                border-radius: 2px;
+                position: relative;
+                img {
+                  object-fit: cover;
+                  height: 100%;
+                  width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+
+/*
+* End Home Index
+*/

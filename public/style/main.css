@@ -1082,9 +1082,6 @@ video {
       .single-v-footer-switch > a.active span, .single-v-footer-switch > a.active i::before {
         color: #ea2c5a; }
 
-.cb-content {
-  width: 130% !important; }
-
 /*
 * Content Index END
 */
@@ -2443,4 +2440,32 @@ footer {
 
 /*
 * Content Upload END
+*/
+/*
+* Home Index
+*/
+.home-container {
+  margin: 0 5vw;
+  max-width: 100vw; }
+  .home-container .row {
+    display: block;
+    max-width: 100vw; }
+    .home-container .row .homearticleitem {
+      display: inline-block;
+      vertical-align: top;
+      width: 30%;
+      margin: 0 1.5vw 1.5vw 0;
+      height: 25vh; }
+      .home-container .row .homearticleitem .v-img {
+        height: 20vh;
+        width: 25vw;
+        border-radius: 2px;
+        position: relative; }
+        .home-container .row .homearticleitem .v-img img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%; }
+
+/*
+* End Home Index
 */
