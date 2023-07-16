@@ -1656,67 +1656,75 @@ footer {
   .bg-image img {
     width: 100%; }
 
-.login-wraper {
-  position: relative; }
-  .login-wraper .login-window {
-    position: absolute;
-    width: 570px;
-    top: 50%;
-    left: 50%;
-    margin-left: -2px;
-    margin-top: -288px; }
-    .login-wraper .login-window .l-head {
-      background-color: #ffffff;
-      padding: 40px;
-      border-bottom: solid 1px #eceff0;
-      font-weight: 500;
-      font-size: 22px;
-      color: #343434;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px; }
-      @media only screen and (max-width: 767px) {
-        .login-wraper .login-window .l-head {
-          background-color: #fbfdfe; } }
-    .login-wraper .login-window .l-form {
-      text-align: left;
-      background-color: #fbfdfe;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-      padding: 25px 70px 70px; }
-      .login-wraper .login-window .l-form label {
-        font-weight: 500; }
-      @media only screen and (max-width: 767px) {
-        .login-wraper .login-window .l-form .btn {
-          border-radius: 30px;
-          padding-top: 16px;
-          padding-bottom: 12px; } }
-  .login-wraper .checkbox {
-    font-weight: normal; }
-    @media only screen and (max-width: 767px) {
-      .login-wraper .checkbox {
-        margin-bottom: 30px; } }
-    .login-wraper .checkbox p {
-      margin-bottom: 4px; }
-    .login-wraper .checkbox .text2 {
-      display: block;
-      font-size: 14px;
-      color: #7e7e7e; }
-  .login-wraper .ortext {
-    padding-top: 25px;
-    color: #7e7e7e; }
-  .login-wraper .signuptext {
-    padding-top: 25px;
+.login-wraper .login-window {
+  position: absolute;
+  width: 570px;
+  top: 50%;
+  left: 50%;
+  margin-left: -2px;
+  margin-top: -288px; }
+  .login-wraper .login-window .error {
+    color: red;
+    font-size: 14px;
     text-align: center;
+    margin-bottom: 10px;
+    background-color: #fbfdfe; }
+  .login-wraper .login-window .l-head {
+    background-color: #ffffff;
+    padding: 40px;
+    border-bottom: solid 1px #eceff0;
+    font-weight: 500;
+    font-size: 22px;
     color: #343434;
-    font-weight: 500; }
-    .login-wraper .signuptext.text-right {
-      text-align: right; }
-  .login-wraper .forgottext {
-    margin-top: 25px; }
-    .login-wraper .forgottext a {
-      color: #7e7e7e; }
-      .login-wraper .forgottext a:hover {
-        text-decoration: underline; }
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+    @media only screen and (max-width: 767px) {
+      .login-wraper .login-window .l-head {
+        background-color: #fbfdfe; } }
+  .login-wraper .login-window .l-form {
+    text-align: left;
+    background-color: #fbfdfe;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 25px 70px 70px; }
+    .login-wraper .login-window .l-form label {
+      font-weight: 500; }
+    @media only screen and (max-width: 767px) {
+      .login-wraper .login-window .l-form .btn {
+        border-radius: 30px;
+        padding-top: 16px;
+        padding-bottom: 12px; } }
+
+.login-wraper .checkbox {
+  font-weight: normal; }
+  @media only screen and (max-width: 767px) {
+    .login-wraper .checkbox {
+      margin-bottom: 30px; } }
+  .login-wraper .checkbox p {
+    margin-bottom: 4px; }
+  .login-wraper .checkbox .text2 {
+    display: block;
+    font-size: 14px;
+    color: #7e7e7e; }
+
+.login-wraper .ortext {
+  padding-top: 25px;
+  color: #7e7e7e; }
+
+.login-wraper .signuptext {
+  padding-top: 25px;
+  text-align: center;
+  color: #343434;
+  font-weight: 500; }
+  .login-wraper .signuptext.text-right {
+    text-align: right; }
+
+.login-wraper .forgottext {
+  margin-top: 25px; }
+  .login-wraper .forgottext a {
+    color: #7e7e7e; }
+    .login-wraper .forgottext a:hover {
+      text-decoration: underline; }
 
 .banner-text {
   position: absolute;
