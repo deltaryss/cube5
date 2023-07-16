@@ -12,11 +12,11 @@
             display: inline-block; 
             vertical-align: top; 
             width: 30%;
-            margin: 0 1.5vw 1.5vw 0; 
+            margin: 3vh 1vh; 
             height: 25vh;
             .v-img {   
                 height: 20vh;
-                width: 25vw;
+                width: 100%;
                 border-radius: 2px;
                 position: relative;
                 img {
@@ -25,6 +25,22 @@
                   width: 100%;
                 }
             }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1365px) {
+    .row {
+        .homearticleitem {
+            width: 45% !important; /* Modification : Deux éléments par ligne */
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .row {
+        .homearticleitem {
+            width: 95% !important; /* Modification : Un élément par ligne */
         }
     }
 }
