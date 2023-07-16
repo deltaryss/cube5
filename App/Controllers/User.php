@@ -41,22 +41,46 @@ class User extends \Core\Controller
      * Page de création de compte
      */
     public function registerAction()
-    {
-        if(isset($_POST['submit'])){
-            $f = $_POST;
+{
+    $data = []; // Initialisation de la variable $data
 
-            if($f['password'] !== $f['password-check']){
-                // TODO: Gestion d'erreur côté utilisateur
-            }
+    if (isset($_POST['submit'])) {
+        $f = $_POST;
 
-            // validation
-
-            $this->register($f);
-            // TODO: Rappeler la fonction de login pour connecter l'utilisateur
+        if ($f['password'] !== $f['password-check']) {
+            $data['error'] = "Les mots de passe ne correspondent pas.";
+            View::renderTemplate('User/register.html', $data);
+            return; // Arrêter le processus ici si les mots de passe ne correspondent pas
         }
 
-        View::renderTemplate('User/register.html');
+        // Vérifier si l'utilisateur existe déjà
+        $existingUser = \App\Models\User::getUserByEmail($f['email']);
+        if ($existingUser) {
+            $data['error'] = "Un compte avec cette adresse e-mail existe déjà.";
+            View::renderTemplate('User/register.html', $data);
+            return; // Arrêter le processus ici si l'utilisateur existe déjà
+        }
+
+        // Validation et création du compte
+        $userId = $this->register($f);
+
+        if ($userId) {
+            // Connexion automatique après la création du compte
+            $user = \App\Models\User::getUserById($userId);
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'username' => $user['username'],
+            ];
+            header('Location: /account');
+            return;
+        }
+        
+        // TODO: Gérer les erreurs de création du compte
     }
+
+    View::renderTemplate('User/register.html', $data);
+}
+
 
     /**
      * Affiche la page du compte

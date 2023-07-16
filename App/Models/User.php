@@ -45,6 +45,30 @@ class User extends Model {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public static function getUserByEmail($email)
+    {
+        $db = static::getDB();
+
+        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public static function getUserById($userId)
+    {
+        $db = static::getDB();
+
+        $stmt = $db->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
+
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
 
     /**
      * ?
