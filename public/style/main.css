@@ -623,6 +623,17 @@ video {
     width: 100%;
     height: 100%; }
 
+.errorPage {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+  .errorPage h1 {
+    font-size: 5rem; }
+  .errorPage p {
+    font-size: 2rem; }
+
 /*
 * Content Index
 */
