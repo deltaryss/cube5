@@ -10,7 +10,7 @@
 }
 
 .login-wraper{
-  position: relative;
+  //position: relative;
   .login-window {
     position: absolute;
     width: 570px;
@@ -18,6 +18,13 @@
     left: 50%;
     margin-left: -2px;
     margin-top: -288px;
+    .error {
+      color: red;
+      font-size: $fs-sm;
+      text-align: center;
+      margin-bottom: 10px;
+      background-color: #fbfdfe;
+    }
     .l-head {
       background-color: $c-white;
 
@@ -28,7 +35,7 @@
       color: $c-caption;
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
-      @media only screen and(max-width: 767px) {
+      @media only screen and (max-width: 767px) {
         background-color: #fbfdfe;
       }
     }
@@ -42,7 +49,7 @@
         font-weight: 500;
       }
       .btn {
-        @media only screen and(max-width: 767px) {
+        @media only screen and (max-width: 767px) {
           border-radius: 30px;
           padding-top: 16px;
           padding-bottom: 12px;
@@ -52,7 +59,7 @@
   }
   .checkbox {
     font-weight: normal;
-    @media only screen and(max-width: 767px) {
+    @media only screen and (max-width: 767px) {
       margin-bottom: 30px;
     }
     p {
