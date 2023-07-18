@@ -2,7 +2,7 @@
 FROM php:apache
 
 # Creation des variables d'environnement
-ENV BRANCHE dev
+ENV BUILD dev
 
 # Activer le module Rewrite
 RUN a2enmod rewrite
@@ -16,7 +16,7 @@ WORKDIR /var/www/html
 # Récupération du code
 RUN git clone https://github.com/deltaryss/cube5.git && \
     cd cube5 && \
-    git checkout $BRANCHE && \
+    git checkout $BUILD && \
     apt-get update && \
 # Installation des dépendances
     apt-get install -y nodejs npm && \
@@ -25,7 +25,8 @@ RUN git clone https://github.com/deltaryss/cube5.git && \
     docker-php-ext-install zip && \
     composer install && \
     npm install && \
-    if [ "$BRANCHE" = "main" ]; then rm -rf ./sql && rm -rf ./style; fi
+# Suppression des dossiers conditionnellement
+    if [ "$BUILD" = "main" ] || [ "$BUILD" = "preprod" ]; then rm -rf ./sql ./style; fi
 
 # Modifiez la configuration d'Apache pour autoriser l'accès à /var/www/html
 RUN sed -i 's/Require all denied/Require all granted/' /etc/apache2/apache2.conf
@@ -34,6 +35,9 @@ RUN chown -R www-data:www-data /var/www/html
 
 # Modifier le fichier de configuration du host apache
 RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/html\/cube5\/public/' /etc/apache2/sites-enabled/000-default.conf
+
+# Copier le fichier php.ini personnalisé dans l'image
+COPY php.ini /usr/local/etc/php/php.ini
 
 # Exposez le port 80 pour accéder à votre application via Apache
 EXPOSE 80
