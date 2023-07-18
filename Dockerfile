@@ -36,9 +36,6 @@ RUN chown -R www-data:www-data /var/www/html
 # Modifier le fichier de configuration du host apache
 RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/html\/cube5\/public/' /etc/apache2/sites-enabled/000-default.conf
 
-# Copier le fichier php.ini personnalisé dans l'image
-COPY php.ini /usr/local/etc/php/php.ini
-
 # Exposez le port 80 pour accéder à votre application via Apache
 EXPOSE 80
 
