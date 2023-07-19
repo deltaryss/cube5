@@ -7,6 +7,9 @@ ENV BUILD dev
 # Activer le module Rewrite
 RUN a2enmod rewrite
 
+# Installation de pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql php
+
 # Installation de Git
 RUN apt-get update && apt-get install -y git
 

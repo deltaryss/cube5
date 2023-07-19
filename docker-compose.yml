@@ -13,7 +13,7 @@ services:
     depends_on:
       - db  # Dépend du service de la base de données
     environment:
-      BUILD: dev  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
+      BUILD: ${BUILD}  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
 
   # Service pour la base de données MySQL
   db:
