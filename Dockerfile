@@ -8,7 +8,7 @@ ENV BUILD dev
 RUN a2enmod rewrite
 
 # Installation de pdo_mysql
-RUN docker-php-ext-install pdo pdo_mysql php
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Installation de Git
 RUN apt-get update && apt-get install -y git
@@ -20,8 +20,8 @@ WORKDIR /var/www/html
 RUN git clone https://github.com/deltaryss/cube5.git && \
     cd cube5 && \
     git checkout $BUILD && \
-    apt-get update && \
 # Installation des dépendances
+    apt-get update && \
     apt-get install -y nodejs npm && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     apt-get install -y libzip-dev && \

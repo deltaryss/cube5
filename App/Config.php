@@ -11,10 +11,10 @@ class Config
 {
 
     /**
-     * Database host
+     * Database host (localhost for local development or db for docker)
      * @var string
      */
-    const DB_HOST = 'db';
+    const DB_HOST = 'localhost';
 
     /**
      * Database name
@@ -26,13 +26,13 @@ class Config
      * Database user
      * @var string
      */
-    const DB_USER = 'root';
+    const DB_USER = 'webapplication';
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'root';
+    const DB_PASSWORD = '653rag9T';
 
     /**
      * Show or hide error messages on screen
