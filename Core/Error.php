@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\View;
+
 /**
  * Error and exception handler
  *

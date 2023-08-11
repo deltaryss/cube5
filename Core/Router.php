@@ -103,38 +103,52 @@ class Router
      * @return void
      */
     public function dispatch($url)
-    {
-        $url = $this->removeQueryStringVariables($url);
-
-        if ($this->match($url)) {
-            $controller = $this->params['controller'];
-            $controller = $this->convertToStudlyCaps($controller);
-            $controller = $this->getNamespace() . $controller;
-
-            if (class_exists($controller)) {
-
-                if(isset($this->params['private']) && !isset($_SESSION['user']['id'])){
-                    throw new \Exception("You must be logged in");
-                }
-
-                $controller_object = new $controller($this->params);
-
-                $action = $this->params['action'];
-                $action = $this->convertToCamelCase($action);
-
-                if (preg_match('/action$/i', $action) == 0) {
-                    $controller_object->$action();
-
+      {
+        try {
+            $url = $this->removeQueryStringVariables($url);
+        
+            if ($this->match($url)) {
+                $controller = $this->params['controller'];
+                $controller = $this->convertToStudlyCaps($controller);
+                $controller = $this->getNamespace() . $controller;
+        
+                if (class_exists($controller)) {
+        
+                    if(isset($this->params['private']) && !isset($_SESSION['user']['id'])){
+                        header('Location: /login');
+                        exit();
+                    }                    
+        
+                    $controller_object = new $controller($this->params);
+        
+                    $action = $this->params['action'];
+                    $action = $this->convertToCamelCase($action);
+        
+                    if (preg_match('/action$/i', $action) == 0) {
+                        $controller_object->$action();
+        
+                    } else {
+                        throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                    }
                 } else {
-                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                    throw new \Exception("Controller class $controller not found");
                 }
             } else {
-                throw new \Exception("Controller class $controller not found");
+                throw new \Exception('No route matched.', 404);
             }
-        } else {
-            throw new \Exception('No route matched.', 404);
+        } catch (\Exception $e) {
+            if ($e->getCode() == 404) {
+                // Rediriger vers la page 404
+                \Core\View::renderTemplate('404.html');
+                exit;
+            } else {
+                // Gérer les autres exceptions ici
+                echo "An error occurred: " . $e->getMessage();
+                exit;
+            }
         }
     }
+
 
     /**
      * Convert the string with hyphens to StudlyCaps,

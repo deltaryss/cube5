@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "watch": "node-sass -w style -o public/style",
+    "buildCss": "node-sass style -o public/style",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^4.14.1"
+    "node-sass": "^9.0.0"
   }
 }
