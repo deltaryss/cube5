@@ -23,8 +23,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: videgrenierenligne
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: webapplication 
+      MYSQL_PASSWORD: 653rag9T
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
@@ -38,8 +38,8 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      PMA_USER: webapplication
-      PMA_PASSWORD: 653rag9T
+      PMA_USER: root
+      PMA_PASSWORD: root
       UPLOAD_LIMIT: 10M
     ports:
       - "8080:80"
