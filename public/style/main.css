@@ -1590,7 +1590,12 @@ ul.menu {
 * FOOTER
 */
 footer {
-  border-top: solid 1px #eceff0; }
+  border-top: solid 1px #eceff0;
+  /*stuck footer at bottom*/
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 0 0 0 0 !important; }
   footer .row .padding-def {
     display: flex;
     align-items: center; }

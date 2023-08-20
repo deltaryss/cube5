@@ -4,6 +4,11 @@
 
 footer {
   border-top: solid 1px $c-divider;
+  /*stuck footer at bottom*/
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 0 0 0 0 !important;
 
   .row {
     .padding-def {
