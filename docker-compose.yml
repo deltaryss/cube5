@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  # Service pour le projet PHP avec Apache
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-app-container
+    restart: always
+    ports:
+      - "80:80"  # Faites correspondre le port du conteneur au port de l'hôte
+    depends_on:
+      - db  # Dépend du service de la base de données
+    environment:
+      BUILD: ${BUILD}  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
+
+  # Service pour la base de données MySQL
+  db:
+    image: mysql:latest
+    container_name: mysql_server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: videgrenierenligne
+      MYSQL_USER: webapplication
+      MYSQL_PASSWORD: 653rag9T
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  # Service pour phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_server
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: webapplication
+      PMA_PASSWORD: 653rag9T
+      UPLOAD_LIMIT: 10M
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
