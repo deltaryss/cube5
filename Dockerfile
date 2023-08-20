@@ -19,20 +19,32 @@ WORKDIR /var/www/html
 # Récupération du code
 RUN git clone https://github.com/deltaryss/cube5.git && \
     cd cube5 && \
-    git checkout $BUILD && \
-# Installation des dépendances
-    apt-get update && \
-    apt-get install -y nodejs npm && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    apt-get install -y libzip-dev && \
-    docker-php-ext-install zip && \
-    composer install && \
-    npm install && \
+    git checkout $BUILD
+
+# Installation de Node.js et npm
+RUN apt-get update && \
+    apt-get install -y nodejs npm
+
+# Installation de Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Installation de libzip-dev et extension PHP zip
+RUN apt-get install -y libzip-dev && \
+    docker-php-ext-install zip
+
+# Installation des dépendances Composer
+WORKDIR /var/www/html/cube5
+RUN composer install
+
+# Installation des dépendances npm
+RUN npm install
+
 # Suppression des dossiers conditionnellement
-    if [ "$BUILD" = "main" ] || [ "$BUILD" = "preprod" ]; then rm -rf ./sql ./style; fi && \
-    if [ "$BUILD" = "main" ]; then rm -rf ./tests; fi && \
-# Lancement des test si on est en preprod
-    if [ "$BUILD" = "preprod" ]; then ./vendor/bin/phpunit tests; fi && \
+RUN if [ "$BUILD" = "main" ] || [ "$BUILD" = "pre-prod" ]; then rm -rf ./sql ./style; fi
+RUN if [ "$BUILD" = "main" ]; then rm -rf ./tests; fi
+
+# Lancement des tests si on est en preprod
+RUN if [ "$BUILD" = "pre-prod" ]; then ./vendor/bin/phpunit tests; fi
 
 # Modifiez la configuration d'Apache pour autoriser l'accès à /var/www/html
 RUN sed -i 's/Require all denied/Require all granted/' /etc/apache2/apache2.conf

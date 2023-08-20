@@ -69,16 +69,6 @@ class User extends Model {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public static function deleteUserByEmail($email)
-    {
-        $db = static::getDB();
-
-        $stmt = $db->prepare('DELETE FROM users WHERE email = :email');
-
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-    }
-
 
     /**
      * ?
