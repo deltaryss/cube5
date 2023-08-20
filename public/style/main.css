@@ -1595,7 +1595,9 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  border: 0 0 0 0 !important; }
+  height: 10vh;
+  margin-bottom: 9vh;
+  z-index: -9001; }
   footer .row .padding-def {
     display: flex;
     align-items: center; }

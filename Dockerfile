@@ -19,7 +19,8 @@ WORKDIR /var/www/html
 # Récupération du code
 RUN git clone https://github.com/deltaryss/cube5.git && \
     cd cube5 && \
-    git checkout $BUILD
+    git checkout $BUILD && \
+    mkdir ${BUILD}
 
 # Installation de Node.js et npm
 RUN apt-get update && \
