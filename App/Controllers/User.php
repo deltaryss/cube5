@@ -15,6 +15,7 @@ use http\Exception\InvalidArgumentException;
 /**
  * User controller
  */
+
 class User extends \Core\Controller
 {
 
@@ -28,13 +29,20 @@ class User extends \Core\Controller
 
             // TODO: Validation
 
-            $this->login($f);
+            $loginResult = $this->login($f);
 
             // Si login OK, redirige vers le compte
-            header('Location: /account');
+            if($loginResult) {
+                header('Location: /account');
+            } else {
+                // Affiche la page de login
+                View::renderTemplate('User/login.html');
+                throw new Exception('');
+            }
+        } else {
+            // Affiche la page de login
+            View::renderTemplate('User/login.html');
         }
-
-        View::renderTemplate('User/login.html');
     }
 
     /**
@@ -50,6 +58,7 @@ class User extends \Core\Controller
         if ($f['password'] !== $f['password-check']) {
             $data['error'] = "Les mots de passe ne correspondent pas.";
             View::renderTemplate('User/register.html', $data);
+            throw new \Exception("Les mots de passe ne correspondent pas.");
             return; // Arrêter le processus ici si les mots de passe ne correspondent pas
         }
 
@@ -58,6 +67,7 @@ class User extends \Core\Controller
         if ($existingUser) {
             $data['error'] = "Un compte avec cette adresse e-mail existe déjà.";
             View::renderTemplate('User/register.html', $data);
+            throw new \Exception("Un compte avec cette adresse e-mail existe déjà.");
             return; // Arrêter le processus ici si l'utilisateur existe déjà
         }
 
@@ -74,8 +84,6 @@ class User extends \Core\Controller
             header('Location: /account');
             return;
         }
-        
-        // TODO: Gérer les erreurs de création du compte
     }
 
     View::renderTemplate('User/register.html', $data);
@@ -119,32 +127,35 @@ class User extends \Core\Controller
         }
     }
 
-    private function login($data){
+    private function login($data) {
         try {
-            if(!isset($data['email'])){
-                throw new Exception('TODO');
+            if (!isset($data['email']) || !isset($data['password'])) {
+                throw new Exception('Veuillez fournir une adresse e-mail et un mot de passe.');
             }
-
+    
             $user = \App\Models\User::getByLogin($data['email']);
-
-            if (Hash::generate($data['password'], $user['salt']) !== $user['password']) {
-                return false;
+    
+            if (!$user) {
+                return false; // L'utilisateur n'existe pas
             }
-
-            // TODO: Create a remember me cookie if the user has selected the option
-            // to remained logged in on the login form.
-            // https://github.com/andrewdyer/php-mvc-register-login/blob/development/www/app/Model/UserLogin.php#L86
-
+    
+            if (Hash::generate($data['password'], $user['salt']) !== $user['password']) {
+                return false; // Mot de passe incorrect
+            }
+    
+            // TODO: Create a remember me cookie if needed
+    
             $_SESSION['user'] = array(
                 'id' => $user['id'],
                 'username' => $user['username'],
             );
-
-            return true;
-
+    
+            return true; // Connexion réussie
+    
         } catch (Exception $ex) {
-            // TODO : Set flash if error
-            /* Utility\Flash::danger($ex->getMessage());*/
+            // TODO: Gérer les erreurs et les messages d'erreur
+            /* Utility\Flash::danger($ex->getMessage()); */
+            return false; // Erreur lors de la tentative de connexion
         }
     }
 
