@@ -29,7 +29,10 @@ RUN git clone https://github.com/deltaryss/cube5.git && \
     composer install && \
     npm install && \
 # Suppression des dossiers conditionnellement
-    if [ "$BUILD" = "main" ] || [ "$BUILD" = "preprod" ]; then rm -rf ./sql ./style; fi
+    if [ "$BUILD" = "main" ] || [ "$BUILD" = "preprod" ]; then rm -rf ./sql ./style; fi && \
+    if [ "$BUILD" = "main" ]; then rm -rf ./tests; fi && \
+# Lancement des test si on est en preprod
+    if [ "$BUILD" = "preprod" ]; then ./vendor/bin/phpunit tests; fi && \
 
 # Modifiez la configuration d'Apache pour autoriser l'accès à /var/www/html
 RUN sed -i 's/Require all denied/Require all granted/' /etc/apache2/apache2.conf

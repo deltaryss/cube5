@@ -47,17 +47,17 @@ Les modèles sont utilisés pour récupérer ou stocker des données dans l'appl
 $db = static::getDB();
 ```
 
-## Lancer le projet avec xampp
-Pour lancer le projet avec xampp, il faut: 
-mettre le dossier du projet dans le dossier htdocs de xampp;
-mettre "DB_HOST=localhost" dans le fichier /App/Config.php;
-lançer xampp et lancer apache et mysql;
-aller sur localhost/phpmyadmin et créer une nouvelle base de données nommée "videgrenier";
-importer le fichier sql/import.sql dans la base de données videgrenier;
-aller sur localhost/videgrenier/public/ pour accéder au site;
+## Lancer le projet avec xampp  
+Pour lancer le projet avec xampp, il faut:   
+mettre le dossier du projet dans le dossier htdocs de xampp;  
+mettre "DB_HOST=localhost" dans le fichier /App/Config.php;  
+lançer xampp et lancer apache et mysql;  
+aller sur http://localhost/phpmyadmin et créer une nouvelle base de données nommée "videgrenier";  
+importer le fichier ``sql/import.sql`` dans la base de données videgrenier;  
+aller sur http://localhost/videgrenier/public/ pour accéder au site;  
 
 ## Lancer le projet avec docker
-Pour lancer le projet avec docker, il faut:
-mettre "DB_HOST=db" dans le fichier /App/Config.php;
-lancer docker puis lancer la commande "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build" dans le dossier du projet (changer le fichier docker-compose.dev.yml en docker-compose.prod.yml pour lancer le projet en prod)(la commande peux prendre du temps ou echouer du aux dépot debian, il faut la relancer jusqu'à ce qu'elle fonctionne);
-aller sur localhost pour accéder au site;
+Pour lancer le projet avec docker, il faut:  
+mettre "DB_HOST=db" dans le fichier /App/Config.php;  
+lancer docker puis lancer la commande ``docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`` dans le dossier du projet (changer le fichier docker-compose.dev.yml en docker-compose.prod.yml pour lancer le projet en prod)(la commande peux prendre du temps ou echouer du aux dépot debian, il faut la relancer jusqu'à ce qu'elle fonctionne);  
+se rendre sur http://localhost pour accéder au site;
