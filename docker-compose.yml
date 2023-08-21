@@ -6,19 +6,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: my-app-container
     restart: always
     ports:
       - "80:80"  # Faites correspondre le port du conteneur au port de l'hôte
     depends_on:
       - database  # Dépend du service de la base de données
+    links:
+      - database  # Lien vers le service de la base de données
     environment:
       BUILD: ${BUILD}  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
 
   # Service pour la base de données MySQL
   database:
     image: mysql:latest
-    container_name: mysql_server
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -33,7 +33,6 @@ services:
   # Service pour phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin_server
     restart: always
     environment:
       PMA_HOST: database
