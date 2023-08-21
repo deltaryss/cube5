@@ -14,7 +14,7 @@ class Config
      * Database host (localhost for local development or database for docker)
      * @var string
      */
-    const DB_HOST = 'database';
+    const DB_HOST = '172.22.0.2';
 
     /**
      * Database name
