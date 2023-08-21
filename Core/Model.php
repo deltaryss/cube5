@@ -13,6 +13,8 @@ use App\Config;
 abstract class Model
 {
 
+    static $db = null;
+
     /**
      * Get the PDO database connection
      *
@@ -20,7 +22,6 @@ abstract class Model
      */
     protected static function getDB()
     {
-        static $db = null;
 
         if ($db === null) {
             $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8';
