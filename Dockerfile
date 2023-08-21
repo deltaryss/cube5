@@ -1,8 +1,8 @@
 # Utilisez l'image de base PHP 7.4 avec Apache
 FROM php:apache
 
-# Creation des variables d'environnement
-ENV BUILD dev
+# Creation des variables d'environnement (recupération de la variable BUILD)
+ARG BUILD
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
@@ -19,10 +19,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /var/www/html
 
 # Récupération du code
-RUN git clone https://github.com/deltaryss/cube5.git && \
-    cd cube5 && \
-    git checkout $BUILD && \
-    mkdir ${BUILD}
+RUN git clone --branch ${BUILD} https://github.com/deltaryss/cube5.git
 
 # Installation de Node.js et npm
 RUN apt-get install -y nodejs npm
