@@ -4,6 +4,7 @@ FROM php:apache
 # Creation des variables d'environnement
 ENV BUILD dev
 
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Activer le module Rewrite
 RUN a2enmod rewrite

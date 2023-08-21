@@ -14,25 +14,25 @@ class Config
      * Database host (localhost for local development or database for docker)
      * @var string
      */
-    const DB_HOST = '172.22.0.2';
+    const DB_HOST = "database";
 
     /**
      * Database name
      * @var string
      */
-    const DB_NAME = 'videgrenierenligne';
+    const DB_NAME = "videgrenierenligne";
 
     /**
      * Database user
      * @var string
      */
-    const DB_USER = 'webapplication';
+    const DB_USER = "webapplication";
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = '653rag9T';
+    const DB_PASSWORD = "653rag9T";
 
     /**
      * Show or hide error messages on screen

@@ -11,10 +11,9 @@ services:
       - "80:80"  # Faites correspondre le port du conteneur au port de l'hôte
     depends_on:
       - database  # Dépend du service de la base de données
-    external_links:
-      - cube5-database-1:database  # Lien vers le service de la base de données
     environment:
-      BUILD: ${BUILD}  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
+      BUILD: ${BUILD}
+      MYSQL_HOST: database  # Remplacez cette valeur par celle que vous souhaitez (main, preprod, etc.)
 
   # Service pour la base de données MySQL
   database:
