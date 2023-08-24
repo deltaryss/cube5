@@ -58,9 +58,10 @@ aller sur http://localhost/videgrenier/public/ pour accéder au site;
 
 ## Lancer le projet avec docker
 Pour lancer le projet avec docker, il faut:  
-mettre "DB_HOST=db" dans le fichier /App/Config.php;  
-lancer docker puis lancer la commande ``docker-compose -f docker-compose.yml -f docker-compose.main.yml up -d --build`` dans le dossier du projet (changer le fichier docker-compose.dev.yml en docker-compose.prod.yml pour lancer le projet en prod)(la commande peux prendre du temps ou echouer du aux dépot debian, il faut la relancer jusqu'à ce qu'elle fonctionne);  
-se rendre sur http://localhost pour accéder au site;
+mettre "DB_HOST=database" dans le fichier /App/Config.php si ce n'est pas déjà le cas;  
+lancer docker puis lancer la commande ``docker-compose -f docker-compose.main.yml up -d --build`` dans le dossier du projet (changer le fichier docker-compose.dev.yml en docker-compose.prod.yml pour lancer le projet en prod)(la commande peux prendre du temps ou echouer du aux dépot debian, il faut la relancer jusqu'à ce qu'elle fonctionne);  
+se rendre sur http://localhost pour accéder au site;  
+vous pourrez accéder à phpmyadmin sur http://localhost:8080.  
 
 ## Lancer les tests
 Pour lancer les tests en local, il faut:  
